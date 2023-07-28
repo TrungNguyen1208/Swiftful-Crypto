@@ -70,6 +70,6 @@ private extension CoinRowView {
           coin.priceChangePercentage24H.orZero >= 0 ? Color.theme.green : Color.theme.red
         )
     }
-    .frame(width: UIScreen.main.bounds.width / 3, alignment: .trailing)
+    .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
   }
 }
