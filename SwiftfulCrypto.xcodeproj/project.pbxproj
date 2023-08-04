@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012ACD622A794EE300808453 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012ACD612A794EE300808453 /* NetworkingManager.swift */; };
 		0167C58C2A6A80E10030193E /* SwiftfulCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167C58B2A6A80E10030193E /* SwiftfulCryptoApp.swift */; };
 		0167C5902A6A80E10030193E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0167C58F2A6A80E10030193E /* Assets.xcassets */; };
 		0167C5932A6A80E10030193E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0167C5922A6A80E10030193E /* Preview Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012ACD612A794EE300808453 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		0167C5882A6A80E10030193E /* SwiftfulCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftfulCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0167C58B2A6A80E10030193E /* SwiftfulCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftfulCryptoApp.swift; sourceTree = "<group>"; };
 		0167C58F2A6A80E10030193E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012ACD602A794E8400808453 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				012ACD612A794EE300808453 /* NetworkingManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		0167C57F2A6A80E10030193E = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0167C58B2A6A80E10030193E /* SwiftfulCryptoApp.swift */,
+				012ACD602A794E8400808453 /* Utilities */,
 				019E44592A73CA9200BC7F76 /* Services */,
 				01D5F8632A6F81F500749664 /* Core */,
 				019AFB412A716B93003425D2 /* Model */,
@@ -247,6 +258,7 @@
 				01D5F86E2A6F838C00749664 /* CircleButtonView.swift in Sources */,
 				01B917A82A7281EF002F34E5 /* Optional+Convenience.swift in Sources */,
 				019AFB432A716BAC003425D2 /* CoinModel.swift in Sources */,
+				012ACD622A794EE300808453 /* NetworkingManager.swift in Sources */,
 				01B917A62A727FAB002F34E5 /* PreviewProvider.swift in Sources */,
 				01B917A42A727F46002F34E5 /* CoinRowView.swift in Sources */,
 				01B917AA2A728258002F34E5 /* Double.swift in Sources */,
