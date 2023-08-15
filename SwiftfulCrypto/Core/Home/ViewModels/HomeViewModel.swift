@@ -11,6 +11,13 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
   
+  @Published var statistics: [StatisticModel] = [
+    StatisticModel(title: "Market Cap", value: "$12.58n", percentageChange: 1),
+    StatisticModel(title: "Market Cap", value: "$12.58n"),
+    StatisticModel(title: "Market Cap", value: "$12.58n"),
+    StatisticModel(title: "Market Cap", value: "$12.58n", percentageChange: -7)
+  ]
+  
   @Published var allCoins: [CoinModel] = []
   @Published var portfolioCoins: [CoinModel] = []
   
