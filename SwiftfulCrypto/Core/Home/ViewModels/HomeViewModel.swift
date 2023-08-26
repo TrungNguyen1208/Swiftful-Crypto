@@ -11,19 +11,14 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
   
-  @Published var statistics: [StatisticModel] = [
-    StatisticModel(title: "Market Cap", value: "$12.58n", percentageChange: 1),
-    StatisticModel(title: "Market Cap", value: "$12.58n"),
-    StatisticModel(title: "Market Cap", value: "$12.58n"),
-    StatisticModel(title: "Market Cap", value: "$12.58n", percentageChange: -7)
-  ]
-  
+  @Published var statistics: [StatisticModel] = []
   @Published var allCoins: [CoinModel] = []
   @Published var portfolioCoins: [CoinModel] = []
   
   @Published var searchText: String = ""
   
-  private let dataService = CoinDataService()
+  private let coinDataService = CoinDataService()
+  private let marketDataService = MarketDataService()
   private var cancellables = Set<AnyCancellable>()
   
   
@@ -33,11 +28,18 @@ final class HomeViewModel: ObservableObject {
   
   func addSubscribers() {
     $searchText
-      .combineLatest(dataService.$allCoins)
+      .combineLatest(coinDataService.$allCoins)
       .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
       .map(filterCoins)
       .sink { [weak self] coins in
         self?.allCoins = coins
+      }
+      .store(in: &cancellables)
+    
+    marketDataService.$marketData
+      .map(mapGlobalMarketData)
+      .sink { [weak self] stats in
+        self?.statistics = stats
       }
       .store(in: &cancellables)
   }
@@ -57,4 +59,16 @@ private extension HomeViewModel {
     }
   }
   
+  func mapGlobalMarketData(data: MarketDataModel?) -> [StatisticModel] {
+    var stats: [StatisticModel] = []
+    guard let data = data else { return stats }
+    
+    let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
+    let volume = StatisticModel(title: "24h Volumn", value: data.volume)
+    let btcDominace = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
+    let profile = StatisticModel(title: "Protfolio Value", value: "$0.00", percentageChange: 0)
+    
+    stats.append(contentsOf: [marketCap, volume, btcDominace, profile])
+    return stats
+  }
 }
