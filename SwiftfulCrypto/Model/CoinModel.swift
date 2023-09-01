@@ -56,6 +56,12 @@ struct CoinModel: Identifiable, Codable {
   }
 }
 
+extension CoinModel: Equatable {
+  static func == (lhs: CoinModel, rhs: CoinModel) -> Bool {
+    lhs.id == rhs.id
+  }
+}
+
 extension CoinModel {
   var currentHoldingsValue: Double {
     (currentHoldings ?? 0) * currentPrice
