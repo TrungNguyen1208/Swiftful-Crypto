@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum HomeSortOption {
+  case rank, rankReversed, holdings, holdingsReversed, price, priceReversed
+}
+
 final class HomeViewModel: ObservableObject {
   
   @Published var statistics: [StatisticModel] = []
@@ -17,6 +21,7 @@ final class HomeViewModel: ObservableObject {
   
   @Published var isLoading: Bool = false
   @Published var searchText: String = ""
+  @Published var sortOption: HomeSortOption = .holdings
   
   private let coinDataService = CoinDataService()
   private let marketDataService = MarketDataService()
@@ -29,9 +34,9 @@ final class HomeViewModel: ObservableObject {
   
   func addSubscribers() {
     $searchText
-      .combineLatest(coinDataService.$allCoins)
+      .combineLatest(coinDataService.$allCoins, $sortOption)
       .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-      .map(filterCoins)
+      .map(filterAndSortCoins)
       .sink { [weak self] coins in
         self?.allCoins = coins
       }
@@ -41,7 +46,8 @@ final class HomeViewModel: ObservableObject {
       .combineLatest(protfolioDataService.$savedEnities)
       .map(mapAllCoinsToPortfolioCoins)
       .sink { [weak self] coins in
-        self?.portfolioCoins = coins
+        guard let self = self else { return }
+        self.portfolioCoins = sortPorfolioCoinsIfNeeded(coins: coins)
       }
       .store(in: &cancellables)
     
@@ -78,6 +84,36 @@ private extension HomeViewModel {
       $0.name.lowercased().contains(lowercasedText) ||
       $0.symbol.lowercased().contains(lowercasedText) ||
       $0.id.lowercased().contains(lowercasedText)
+    }
+  }
+  
+  func filterAndSortCoins(text: String, coins: [CoinModel], sort: HomeSortOption) -> [CoinModel] {
+    var updatedCoins = filterCoins(text: text, coins: coins)
+    sortCoins(sort: sort, coins: &updatedCoins)
+    return updatedCoins
+  }
+  
+  func sortCoins(sort: HomeSortOption, coins: inout [CoinModel]) {
+    switch sort {
+    case .rank, .holdings:
+      coins.sort { $0.rank < $1.rank}
+    case .rankReversed, .holdingsReversed:
+      coins.sort { $0.rank > $1.rank}
+    case .price:
+      coins.sort { $0.currentPrice < $1.currentPrice}
+    case .priceReversed:
+      coins.sort { $0.currentPrice > $1.currentPrice}
+    }
+  }
+  
+  func sortPorfolioCoinsIfNeeded(coins: [CoinModel]) -> [CoinModel] {
+    switch sortOption {
+    case .holdings:
+      return coins.sorted { $0.currentHoldingsValue > $1.currentHoldingsValue }
+    case .holdingsReversed:
+      return coins.sorted { $0.currentHoldingsValue < $1.currentHoldingsValue }
+    default:
+      return coins
     }
   }
   

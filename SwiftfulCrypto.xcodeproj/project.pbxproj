@@ -36,6 +36,7 @@
 		01D5F8682A6F822300749664 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5F8672A6F822300749664 /* HomeView.swift */; };
 		01D5F86E2A6F838C00749664 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5F86D2A6F838C00749664 /* CircleButtonView.swift */; };
 		01D5F8702A6F8DD100749664 /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5F86F2A6F8DD100749664 /* CircleButtonAnimationView.swift */; };
+		246BCB452CACFF8400A83358 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246BCB442CACFF8400A83358 /* DetailView.swift */; };
 		595090622A8B6F4D00D24106 /* Collection+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595090612A8B6F4D00D24106 /* Collection+SafeSubscript.swift */; };
 		595090642A8B759D00D24106 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595090632A8B759D00D24106 /* StatisticModel.swift */; };
 		595090672A8B766500D24106 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595090662A8B766500D24106 /* StatisticView.swift */; };
@@ -73,6 +74,7 @@
 		01D5F8672A6F822300749664 /* HomeView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		01D5F86D2A6F838C00749664 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		01D5F86F2A6F8DD100749664 /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
+		246BCB442CACFF8400A83358 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		595090612A8B6F4D00D24106 /* Collection+SafeSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+SafeSubscript.swift"; sourceTree = "<group>"; };
 		595090632A8B759D00D24106 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
 		595090662A8B766500D24106 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				01D5F8692A6F832C00749664 /* Components */,
+				246BCB412CACFF5800A83358 /* Detail */,
 				01D5F8642A6F820500749664 /* Home */,
 			);
 			path = Core;
@@ -258,6 +261,30 @@
 			path = CircleButton;
 			sourceTree = "<group>";
 		};
+		246BCB412CACFF5800A83358 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				246BCB432CACFF6F00A83358 /* ViewModels */,
+				246BCB422CACFF6400A83358 /* Views */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		246BCB422CACFF6400A83358 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				246BCB442CACFF8400A83358 /* DetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		246BCB432CACFF6F00A83358 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		595090652A8B765400D24106 /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +321,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					0167C5872A6A80E10030193E = {
 						CreatedOnToolsVersion = 14.1;
@@ -361,6 +388,7 @@
 				595090622A8B6F4D00D24106 /* Collection+SafeSubscript.swift in Sources */,
 				0197E04D2A7FE70000896CDE /* CoinImageViewModel.swift in Sources */,
 				01B917A42A727F46002F34E5 /* CoinRowView.swift in Sources */,
+				246BCB452CACFF8400A83358 /* DetailView.swift in Sources */,
 				01B917AA2A728258002F34E5 /* Double.swift in Sources */,
 				0197E04B2A7FDEA700896CDE /* CoinImageService.swift in Sources */,
 				0167C58C2A6A80E10030193E /* SwiftfulCryptoApp.swift in Sources */,
@@ -406,9 +434,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -466,9 +496,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -492,8 +524,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftfulCrypto/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -511,6 +545,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trungnt.SwiftfulCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -522,8 +558,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftfulCrypto/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -541,6 +579,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.trungnt.SwiftfulCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

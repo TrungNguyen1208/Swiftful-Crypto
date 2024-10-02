@@ -64,11 +64,11 @@ extension CoinModel: Equatable {
 
 extension CoinModel {
   var currentHoldingsValue: Double {
-    (currentHoldings ?? 0) * currentPrice
+    currentHoldings.orZero * currentPrice
   }
   
   var rank: Int {
-    Int(marketCapRank ?? 0)
+    Int(marketCapRank.orZero)
   }
   
   func updateHoldings(amount: Double) -> CoinModel {

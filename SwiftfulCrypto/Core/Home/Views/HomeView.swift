@@ -85,14 +85,48 @@ private extension HomeView {
   }
   
   var columnTitles: some View {
-    HStack {
-      Text("Coin")
+    let showChevron = [HomeSortOption.rank, HomeSortOption.rankReversed].contains(homeVM.sortOption)
+    let angleDegrees = homeVM.sortOption == .rank ? 0 : 180.0
+    
+    return HStack {
+      HStack(spacing: 4) {
+        Text("Coin")
+        Image(systemName: "chevron.down")
+          .opacity(showChevron ? 1 : 0)
+          .rotationEffect(Angle(degrees: angleDegrees))
+      }
+      .onTapGesture {
+        withAnimation(.default) {
+          homeVM.sortOption = homeVM.sortOption == .rank ? .rankReversed : .rank
+        }
+      }
+      
       Spacer()
       if showPortfolio {
-        Text("Holdings")
+        HStack(spacing: 4) {
+          Text("Holdings")
+          Image(systemName: "chevron.down")
+            .opacity(showChevron ? 1 : 0)
+            .rotationEffect(Angle(degrees: angleDegrees))
+        }
+        .onTapGesture {
+          withAnimation(.default) {
+            homeVM.sortOption = homeVM.sortOption == .holdings ? .holdingsReversed : .holdings
+          }
+        }
       }
-      Text("Price")
-        .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+      HStack(spacing: 4) {
+        Text("Price")
+        Image(systemName: "chevron.down")
+          .opacity(showChevron ? 1 : 0)
+          .rotationEffect(Angle(degrees: angleDegrees))
+      }
+      .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+      .onTapGesture {
+        withAnimation(.default) {
+          homeVM.sortOption = homeVM.sortOption == .price ? .priceReversed : .price
+        }
+      }
       
       Button {
         withAnimation(.linear(duration: 2)) {
